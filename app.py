@@ -16,7 +16,6 @@ st.sidebar.title("Navigation")
 
 # Define page options with icons (Unicode/Emoji)
 page_options = [
-    {"key": "home", "label": "Home", "icon": "🏠"},
     {"key": "forecasts", "label": "Forecasts", "icon": "📈"},
     {"key": "walk_forward", "label": "Walk-Forward Backtest", "icon": "🔄"},
     {"key": "about", "label": "About", "icon": "ℹ️"}
@@ -46,7 +45,6 @@ for p in page_options:
 # =========================
 # DYNAMIC PAGE IMPORT
 page_module_mapping = {
-    "home": "app_pages.Home",
     "forecasts": "app_pages.Forecasts",
     "walk_forward": "app_pages.Walk_Forward",
     "about": "app_pages.About"
