@@ -4,6 +4,7 @@ import numpy as np
 from utils.data_utils import load_data, create_lags, LAGS, TARGET
 from utils.ml_utils import get_models, recursive_forecast
 from utils.plot_utils import plot_forecasts
+from datetime import date, timedelta
 
 # -------------------------------
 # Page config (MOBILE FIRST)
@@ -64,19 +65,23 @@ def main():
     values = np.array(list(eow_predictions.values()))
 
     consensus = values.mean()
-    best_case = values.max()
-    worst_case = values.min()
+    best_case = values.min()
+    worst_case = values.max()
 
-    change = consensus - current_rate
+    change = current_rate - consensus
     pct_change = (change / current_rate) * 100
 
     # Color cue
     delta_color = "normal" if change == 0 else ("inverse" if change < 0 else "normal")
 
+    today = date.today()
+    week_label = f"{today:%d %b} – {(today + timedelta(days=6)):%d %b}"
+    
     # -------------------------------
     # 📊 TOP METRICS (MOST IMPORTANT)
     # -------------------------------
-    st.subheader("📅 End-of-Week Outlook")
+    st.subheader("📅 End-of-Week Outlook ")
+    st.info(f"📅 **Week Range - Forecast period:** {week_label}")
 
     c1, c2 = st.columns(2)
 
@@ -108,6 +113,8 @@ def main():
         outlook = "Kwacha is expected to strengthen slightly this week."
     else:
         outlook = "Kwacha is expected to remain broadly stable this week."
+
+    
 
     st.subheader("🧠 Weekly Outlook")
     st.write(

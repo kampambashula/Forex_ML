@@ -93,7 +93,7 @@ if len(prev_files) >= 2:
 else:
     last_week_consensus = current_rate
 
-change_vs_last_week = consensus - last_week_consensus
+change_vs_last_week = last_week_consensus - consensus
 pct_vs_last_week = (change_vs_last_week / last_week_consensus) * 100
 
 # --- 4-week trend
