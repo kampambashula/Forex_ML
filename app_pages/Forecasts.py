@@ -68,7 +68,7 @@ def main():
     best_case = values.min()
     worst_case = values.max()
 
-    change = current_rate - consensus
+    change = consensus -current_rate
     pct_change = (change / current_rate) * 100
 
     # Color cue
